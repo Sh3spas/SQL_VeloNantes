@@ -1,6 +1,9 @@
+#Script python pour automatiser les requetes sql permetant de remplir la table Releve
+
+
 import csv
 idReleve = 0
-with open('data_comptage_nettoyees_v2.csv', newline='') as csvfile:
+with open('../LesTablesExcel/data_comptage_nettoyees_v2.csv', newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=';')
     next(reader)  # Ignorer la première ligne
     for row in reader:
@@ -38,7 +41,7 @@ with open('data_comptage_nettoyees_v2.csv', newline='') as csvfile:
         # Écrire la requête SQL d'insertion
         sql_query = "INSERT INTO Releve (idReleve,unCompteur,laDate, heure0, heure1, heure2, heure3, heure4, heure5, heure6, heure7, heure8, heure9, heure10, heure11, heure12, heure13, heure14, heure15, heure16, heure17, heure18, heure19, heure20, heure21, heure22, heure23,total, probA) VALUES ({}, {}, '{}', {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},'{}');"
 
-        # Verifier si les int sont remplies
+        # Verifier si les int sont remplies sinon mettre -1 (A modifier)
         if heure_0 == '':
             heure_0 = -1
         if heure_1 == '':

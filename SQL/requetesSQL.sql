@@ -1,21 +1,23 @@
--- 1. Quels sont les noms des quartiers avec une longueur de piste supérieure à 10000 mètres ?
+/*Requete SQL permmetant de tester le bon fonctionement de la BDD*/
+
+-- 1. Quels sont les noms des quartiers avec une longueur de piste supï¿½rieure ï¿½ 10000 mï¿½tres ?
 SELECT nomQuartier
 FROM Quartier
 WHERE longueurPiste > 10000;
 
--- 2. Quelles sont les dates des jours de Vacances de Noel (vacances Zone B) avec une température supérieure à 12 degrés Celsius ?
+-- 2. Quelles sont les dates des jours de Vacances de Noel (vacances Zone B) avec une tempï¿½rature supï¿½rieure ï¿½ 12 degrï¿½s Celsius ?
 SELECT datej
 FROM Jour
 WHERE vacanceZoneB = 'Vacances de Noel' AND temperature > 12;
 
--- 3. Quels sont les noms des quartiers et les libellés des compteurs ?
+-- 3. Quels sont les noms des quartiers et les libellï¿½s des compteurs ?
 SELECT nomQuartier AS quartierLibelle
 FROM Quartier
 UNION
 SELECT libelle AS quartierLibelle
 FROM Compteur;
 
--- 4. Quels sont les noms des quartiers qui n'ont pas de compteur associé ?
+-- 4. Quels sont les noms des quartiers qui n'ont pas de compteur associï¿½ ?
 SELECT nomQuartier
 FROM Quartier
 MINUS
@@ -23,18 +25,18 @@ SELECT nomQuartier
 FROM Quartier
 JOIN Compteur ON idQuartier = unQuartier;
 
--- 5. Quels sont les libellés des compteurs et les noms des quartiers correspondants ?
+-- 5. Quels sont les libellï¿½s des compteurs et les noms des quartiers correspondants ?
 SELECT libelle, nomQuartier
 FROM Compteur
 JOIN Quartier ON unQuartier = idQuartier;
 
--- 6. Quels sont les totaux des relevés supérieurs à 5000 pour chaque compteur et la date de ces relevés ?
+-- 6. Quels sont les totaux des relevï¿½s supï¿½rieurs ï¿½ 5000 pour chaque compteur et la date de ces relevï¿½s ?
 SELECT total, laDate, libelle
 FROM Releve
 JOIN Compteur ON unCompteur = idCompteur
 WHERE total > 5000;
 
--- 7. Quelles sont les 5 dates les plus chaudes enregistrées ?
+-- 7. Quelles sont les 5 dates les plus chaudes enregistrï¿½es ?
 SELECT datej, temperature
 FROM (
     SELECT datej, temperature, ROWNUM AS rn
@@ -43,13 +45,13 @@ FROM (
 )
 WHERE rn <= 5;
 
--- 8. Quels sont les compteurs qui n'ont pas de relevés associés ?
+-- 8. Quels sont les compteurs qui n'ont pas de relevï¿½s associï¿½s ?
 SELECT idCompteur
 FROM Compteur
 LEFT JOIN Releve ON idCompteur = unCompteur
 WHERE unCompteur IS NULL;
 
--- 9. Quels sont les jours sans relevés associés ? (Aucun)
+-- 9. Quels sont les jours sans relevï¿½s associï¿½s ? (Aucun)
 SELECT *
 FROM Jour
 LEFT JOIN Releve ON datej = laDate
@@ -59,33 +61,33 @@ WHERE laDate IS NULL;
 SELECT SUM(longueurPiste)
 FROM Quartier;
 
--- 11. Quelle est la température moyenne de tous les jours enregistrés ?
+-- 11. Quelle est la tempï¿½rature moyenne de tous les jours enregistrï¿½s ?
 SELECT AVG(temperature)
 FROM Jour;
 
--- 12. Quel est le total des relevés pour chaque compteur ?
+-- 12. Quel est le total des relevï¿½s pour chaque compteur ?
 SELECT unCompteur, SUM(total)
 FROM Releve
 GROUP BY unCompteur;
 
--- 13. Quelle est la température moyenne par jour de la semaine ?
+-- 13. Quelle est la tempï¿½rature moyenne par jour de la semaine ?
 SELECT jourDeLaSemaine, AVG(temperature)
 FROM Jour
 GROUP BY jourDeLaSemaine;
 
--- 14. Quels sont les jours de la semaine avec une température moyenne supérieure à 20 degrés Celsius ?
+-- 14. Quels sont les jours de la semaine avec une tempï¿½rature moyenne supï¿½rieure ï¿½ 20 degrï¿½s Celsius ?
 SELECT jourDeLaSemaine, AVG(temperature)
 FROM Jour
 GROUP BY jourDeLaSemaine
 HAVING AVG(temperature) > 20;
 
--- 15. Quels sont les compteurs ayant un total de relevés supérieur à 10000 ?
+-- 15. Quels sont les compteurs ayant un total de relevï¿½s supï¿½rieur ï¿½ 10000 ?
 SELECT unCompteur, SUM(total)
 FROM Releve
 GROUP BY unCompteur
 HAVING SUM(total) > 10000;
 
--- 16. Quels sont les compteurs qui ont des relevés pour tous les jours ?
+-- 16. Quels sont les compteurs qui ont des relevï¿½s pour tous les jours ?
 SELECT idCompteur, libelle
 FROM Compteur
 JOIN (
@@ -98,7 +100,7 @@ WHERE totalDates = (
     SELECT COUNT(*) FROM Jour
 );
 
--- 17. Quels sont les relevés effectués le Dimanche durant les jours de Vacances de printemps (vacances Zone B) ?
+-- 17. Quels sont les relevï¿½s effectuï¿½s le Dimanche durant les jours de Vacances de printemps (vacances Zone B) ?
 SELECT idReleve
 FROM Releve
 WHERE laDate IN (
@@ -108,7 +110,7 @@ WHERE laDate IN (
     AND jourDeLaSemaine IN (7)
 );
 
--- 18. Quels sont les compteurs qui ont des relevés avec un total supérieur à 1000 ?
+-- 18. Quels sont les compteurs qui ont des relevï¿½s avec un total supï¿½rieur ï¿½ 1000 ?
 SELECT idCompteur
 FROM Compteur
 WHERE EXISTS (

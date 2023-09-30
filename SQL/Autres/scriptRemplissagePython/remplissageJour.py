@@ -1,6 +1,8 @@
+#Script python pour automatiser les requetes sql permetant de remplir la table Jour
+
 import csv
 occurence = 0
-with open('data_comptage_nettoyees_v2.csv', newline='') as csvfile:
+with open('../LesTablesExcel/data_comptage_nettoyees_v2.csv', newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=';')
     next(reader)  # Ignorer la première ligne
     for row in reader:

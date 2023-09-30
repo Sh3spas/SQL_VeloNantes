@@ -3,6 +3,8 @@ DROP TABLE Compteur;
 DROP TABLE Jour; 
 DROP TABLE Quartier;
 
+/* Création des tables */
+
 CREATE TABLE Quartier (
     idQuartier NUMBER
         CONSTRAINT pk_Quartier PRIMARY KEY,

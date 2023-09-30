@@ -1,6 +1,7 @@
+#Script python pour automatiser les requetes sql permetant de remplir la table Compteur
 import csv
 
-with open('TableCompteur.csv', newline='') as csvfile:
+with open('../LesTablesExcel/TableCompteur.csv', newline='') as csvfile:
     reader = csv.reader(csvfile, delimiter=';')
     next(reader)  # Ignorer la première ligne
     for row in reader:
