@@ -95,5 +95,5 @@ with open('../LesTablesExcel/data_comptage_nettoyees_v2.csv', newline='') as csv
         sql_insert = sql_query.format(idReleve,unCompteur,laDate, heure_0, heure_1, heure_2, heure_3, heure_4, heure_5, heure_6, heure_7, heure_8, heure_9, heure_10, heure_11, heure_12, heure_13, heure_14, heure_15, heure_16, heure_17, heure_18, heure_19, heure_20, heure_21, heure_22, heure_23,total, probA)
 
         # Écrire la requête SQL dans le fichier
-        with open('ReleveInsert.sql', 'a') as sql_file:
+        with open('../scriptRemplissageSQL/ReleveInsert.sql', 'a') as sql_file:
             sql_file.write(sql_insert + '\n')

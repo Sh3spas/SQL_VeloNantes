@@ -26,5 +26,5 @@ with open('../LesTablesExcel/data_comptage_nettoyees_v2.csv', newline='') as csv
             break
         
         # Écrire la requête SQL dans le fichier
-        with open('JourInsert.sql', 'a') as sql_file:
+        with open('../scriptRemplissageSQL/JourInsert.sql', 'a') as sql_file:
             sql_file.write(sql_insert + '\n')

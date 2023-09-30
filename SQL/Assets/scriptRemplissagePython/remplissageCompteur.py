@@ -27,5 +27,5 @@ with open('../LesTablesExcel/TableCompteur.csv', newline='') as csvfile:
         sql_insert = sql_query.format(idCompteur,unQuartier,libelle,observation,latitude,longitude)
 
         # Écrire la requête SQL dans le fichier
-        with open('CompteurInsert.sql', 'a') as sql_file:
+        with open('../scriptRemplissageSQL/CompteurInsert.sql', 'a') as sql_file:
             sql_file.write(sql_insert + '\n')
